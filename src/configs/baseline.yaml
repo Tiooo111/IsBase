@@ -1,10 +1,13 @@
 defaults:
   - model: baseline
-  - writer: wandb
+  - writer: cometml
   - metrics: example
   - datasets: example
   - dataloader: example
   - transforms: example
+  - override hydra/launcher: basic
+  - override hydra/hydra_logging: disabled
+  - override hydra/job_logging: disabled
   - _self_
 optimizer:
   _target_: torch.optim.Adam
@@ -28,3 +31,7 @@ trainer:
   early_stop: ${trainer.n_epochs} # epochs for early stopping
   save_dir: "saved"
   seed: 1
+hydra:
+  output_subdir: null
+  run:
+    dir: .
